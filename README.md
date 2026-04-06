@@ -23,17 +23,17 @@
 
 **Phase 2: 데이터 병합 (processed_data_merge.py)**
 *학교코드 기준 병합 (학교별 1:1 관계)*
-├─ PHASE 1: 병합 호환성 진단
-│  ├─ 각 데이터셋 행수, 열수, 고유학교수 확인
-│  ├─ 학교코드 교집합 분석 (모든 데이터셋이 공통으로 가진 학교 확인)
-│  ├─ 학교코드 중복도 검사 (1:N 관계 탐지)
-│  └─ 컬럼명 충돌 사전 점검
-├─ PHASE 2: 1:N 관계 해소 (중복 행 집계)
-│  ├─ 수치형 변수: 평균(mean) 계산
-│  ├─ 범주형 변수: 최빈값(mode) 계산
-│  └─ 결측 플래그: 최댓값(max) - 하나라도 결측이면 1
-└─ PHASE 3: 최종 병합
-   └─ 학교코드 기준 outer join → merge_data.csv 저장
+├─ PHASE 1: 병합 호환성 진단  
+│  ├─ 각 데이터셋 행수, 열수, 고유학교수 확인  
+│  ├─ 학교코드 교집합 분석 (모든 데이터셋이 공통으로 가진 학교 확인)  
+│  ├─ 학교코드 중복도 검사 (1:N 관계 탐지)  
+│  └─ 컬럼명 충돌 사전 점검  
+├─ PHASE 2: 1:N 관계 해소 (중복 행 집계)  
+│  ├─ 수치형 변수: 평균(mean) 계산   
+│  ├─ 범주형 변수: 최빈값(mode) 계산  
+│  └─ 결측 플래그: 최댓값(max) - 하나라도 결측이면 1  
+└─ PHASE 3: 최종 병합  
+   └─ 학교코드 기준 outer join → merge_data.csv 저장  
 
 **Phase 3: 메인 처리 실행 (main.py)**
 *실행 순서*
@@ -44,20 +44,20 @@
 **Phase 4: 탐색적 데이터 분석 (EDA) (SHAP.py)**
 1. 기본 통계: 행수, 열수, 데이터 타입, 결측치
 2. 타겟 변수 분포: 교육불평등_등급, 교육불평등_복합지수
-3. 시각화 탐색 (6가지)
-  ├─ 불평등 등급 분포 (카운트)
-  ├─ 복합지수 분포 (히스토그램)
-  ├─ 학교급별 불평등 지수 (박스플롯)
-  ├─ 학생1인당 수입 vs 지수 (산점도)
-  ├─ 방과후 프로그램 vs 지수 (산점도)
-  └─ 시도교육청별 평균 지수 (막대그래프)
-4. 상관관계 분석: 주요 변수 간 피어슨 상관계수
+3. 시각화 탐색 (6가지)  
+  ├─ 불평등 등급 분포 (카운트)  
+  ├─ 복합지수 분포 (히스토그램)  
+  ├─ 학교급별 불평등 지수 (박스플롯)  
+  ├─ 학생1인당 수입 vs 지수 (산점도)  
+  ├─ 방과후 프로그램 vs 지수 (산점도)  
+  └─ 시도교육청별 평균 지수 (막대그래프)  
+4. 상관관계 분석: 주요 변수 간 피어슨 상관계수  
 
 **Phase 5: Streamlit 대시보드 (app.py, pages)**
-*메인 페이지 (app.py)*
-  ├─ 메트릭 카드: 전체 학교 수, 변수 개수
-  ├─ 다중 필터: 시도교육청, 학교급, 불평등 등급
-  └─ 대시보드 시각화
+*메인 페이지 (app.py)*  
+  ├─ 메트릭 카드: 전체 학교 수, 변수 개수  
+  ├─ 다중 필터: 시도교육청, 학교급, 불평등 등급  
+  └─ 대시보드 시각화  
 
 *상세 분석 페이지 (pages)*
       페이지	                      기능
@@ -74,27 +74,27 @@
 **데이터 흐름 다이어그램**
 CSV 데이터 (7개)
     ↓
-개별 전처리 함수들
-├─ Campus_Hygiene_Data_Processing
-├─ Afterschool_Program_Data_Processing
-├─ Campus_Health_Office_Data_Processing
-├─ Campus_Income_Data_Processing
-├─ Campus_Outcome_Data_Processing
-├─ Campus_Lunch_Data_Processing
-└─ Campus_Space_Data_Processing
+개별 전처리 함수들  
+├─ Campus_Hygiene_Data_Processing  
+├─ Afterschool_Program_Data_Processing  
+├─ Campus_Health_Office_Data_Processing  
+├─ Campus_Income_Data_Processing  
+├─ Campus_Outcome_Data_Processing  
+├─ Campus_Lunch_Data_Processing  
+└─ Campus_Space_Data_Processing  
+    ↓  
+merge_data() 함수  
+├─ 호환성 진단  
+├─ 1:N 관계 해소  
+└─ 학교코드 기준 병합  
     ↓
-merge_data() 함수
-├─ 호환성 진단
-├─ 1:N 관계 해소
-└─ 학교코드 기준 병합
+merge_data.csv (최종 병합 데이터)  
     ↓
-merge_data.csv (최종 병합 데이터)
-    ↓
-┌─────────────┬────────────────┬─────────────────┐
-│             │                │                 │
-↓             ↓                ↓                 ↓
-EDA      Streamlit       모델 학습          시뮬레이터
-분석      대시보드      (Model 저장)        예측
+┌─────────────┬────────────────┬─────────────────┐  
+│             │                │                 │  
+↓             ↓                ↓                 ↓  
+EDA      Streamlit       모델 학습          시뮬레이터  
+분석      대시보드      (Model 저장)        예측  
 
 주요 특징
 1. 자동화된 결측치 처리: 지역×학교급 중앙값으로 스마트하게 대체
