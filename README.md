@@ -153,8 +153,8 @@ python SHAP.py
 
 ```bash
 # 저장소 클론
-git clone https://github.com/yourusername/Public_Data-Based_Education_Inequality_Index_Dashboard.git
-cd Public_Data-Based_Education_Inequality_Index_Dashboard
+git clone https://github.com/yourusername/Education_Inequality_Index_Dashboard.git
+cd Education_Inequality_Index_Dashboard
 
 # Python 가상 환경 생성 (권장)
 python -m venv venv
@@ -164,13 +164,6 @@ venv\Scripts\activate  # Windows
 ```
 
 ### 2️⃣ 필수 패키지 설치
-
-```bash
-pip install -r requirements.txt
-```
-
-또는 필수 패키지를 직접 설치:
-
 ```bash
 pip install streamlit pandas numpy plotly scikit-learn shap matplotlib seaborn scipy
 ```
