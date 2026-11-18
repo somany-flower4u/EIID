@@ -66,10 +66,8 @@ Waterfall/             상위 5개 학교의 SHAP 워터폴 그림
 
 ## 설치와 실행
 
-`requirements.txt`는 없습니다. 코드가 쓰는 패키지는 다음과 같습니다.
-
 ```bash
-pip install streamlit pandas numpy plotly scikit-learn xgboost shap matplotlib seaborn joblib
+pip install -r requirements.txt
 ```
 
 대시보드만 보려면 저장된 `data/merge_data.csv`와 `models/`로 바로 실행됩니다.
@@ -84,8 +82,6 @@ streamlit run app.py
 python main.py     # 전처리와 병합 -> data/merge_data.csv
 python SHAP.py     # 학습, SHAP, models/ 산출물 저장
 ```
-
-`main.py`는 `data/2025_campus_Outcome.csv`를 읽는데 저장소의 파일 이름은 `2025_campus_outcome.csv`입니다. macOS처럼 대소문자를 구분하지 않는 환경에서는 동작하지만, Linux에서는 둘 중 하나를 맞춰야 합니다.
 
 `models/*.pkl`은 joblib으로 저장했습니다. 출처를 모르는 pkl은 열지 마세요. 같은 버전의 scikit-learn, XGBoost, SHAP에서 여는 것이 안전합니다.
 
